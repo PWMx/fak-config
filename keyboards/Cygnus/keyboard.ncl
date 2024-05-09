@@ -1,7 +1,5 @@
 # Cygnus 36keys
-#
-# e.g. use by replacing ncl/keyboard.ncl with:
-#   import "keyboards/rgoulter/ch552-36/keyboard.ncl"
+# See https://github.com/juhakaup/keyboards/tree/main/Cygnus%20v1.0
 
 let { ColToRowKey, PeripheralSideKey, .. } = import "fak/keyboard.ncl" in
 let { CH552T, .. } = import "fak/mcus.ncl" in
