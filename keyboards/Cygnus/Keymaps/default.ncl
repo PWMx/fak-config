@@ -1,5 +1,7 @@
 # Miryoku Layout for Cygnus 36keys
 # See https://github.com/manna-harbour/miryoku
+# Home-row pinkies is AltGr suitable for EurKey
+# Inner thumbs combo is Win
 
 let { tap, hold, td, combo, encoder, .. } = import "fak/keycode.ncl" in
 let util = import "fak/util_functions.ncl" in
@@ -193,10 +195,10 @@ let keymap = {
 
     # Function layer
     L' [
-      kc.F12,  kc.F7,   kc.F8,   kc.F9,   XXXX,       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
-      kc.F11,  kc.F4,   kc.F5,   kc.F6,   XXXX,       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
-      kc.F10,  kc.F1,   kc.F2,   kc.F3,   XXXX,       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
-                        XXXX,    XXXX,    XXXX,       XXXX,    XXXX,    XXXX,
+      kc.F12,  kc.F7,   kc.F8,   kc.F9,   kc.PSCR,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+      kc.F11,  kc.F4,   kc.F5,   kc.F6,   kc.SCRL,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+      kc.F10,  kc.F1,   kc.F2,   kc.F3,   kc.PAUS,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+                        md.rgui, XXXX,    XXXX,       XXXX,    XXXX,    XXXX,
     ],    
   ]
 } in
