@@ -3,7 +3,7 @@
 # Home-row pinkies is AltGr suitable for EurKey
 # Inner thumbs combo is Win
 
-let { tap, hold, td, combo, encoder, .. } = import "fak/keycode.ncl" in
+let { tap, hold, td, combo, macro, .. } = import "fak/keycode.ncl" in
 let util = import "fak/util_functions.ncl" in
 
 let virtual_keys' = [
@@ -50,6 +50,7 @@ let make_hrm = fun key_idx =>
       ki.tr, ki.tr, ki.tr, ki.tr, ki.tp,    ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
       ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,    ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,  
                     ki.hp, ki.hp, ki.hp,    ki.hp, ki.hp, ki.hp,
+                    ki.xx,
     ]
   } in
 
@@ -59,6 +60,7 @@ let make_hrm = fun key_idx =>
       ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,    ki.tp, ki.tr, ki.tr, ki.tr, ki.tr,
       ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,    ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,
                     ki.hp, ki.hp, ki.hp,    ki.hp, ki.hp, ki.hp,
+                    ki.xx,
     ]
   } in
 
@@ -76,7 +78,7 @@ let make_hrm = fun key_idx =>
 
     mod & hold.reg.behavior (
       (if side == 'left then htb_hrm_left else htb_hrm_right)
-      (if mod == md.lalt then 'none else 'hold)
+      (if mod == (md.lalt | md.ralt) then 'none else 'hold)
     )
   else
     {}
@@ -112,20 +114,20 @@ let alphas = fun layout => layout
   |> util.array.enumerate
   |> std.array.map (fun { index, value } => kc."%{value}"
       & (if index == 0 then
-          MO 2 & hold.reg.behavior htb_media
+          MO 1 & hold.reg.behavior htb_media
         else 
           make_hrm index)
     )
 in
 
 let cu = {
-  REDO = md.lctl & kc.Y,
-  PSTE = md.lctl & kc.V,
-  COPY = md.lctl & kc.C,
-  CUT  = md.lctl & kc.X,
-  UNDO = md.lctl & kc.Z,
-  WH_L = md.lsft & ms.WH_U,
-  WH_R = md.lsft & ms.WH_D,
+  REDO = tm.lctl & kc.Y,
+  PSTE = tm.lctl & kc.V,
+  COPY = tm.lctl & kc.C,
+  CUT  = tm.lctl & kc.X,
+  UNDO = tm.lctl & kc.Z,
+  WH_L = macro.make [macro.press md.lsft, macro.tap ms.WH_U, macro.release md.lsft],
+  WH_R = macro.make [macro.press md.lsft, macro.tap ms.WH_D, macro.release md.lsft],
   BOOT = tap.custom.fak.BOOT,
 } in
 
@@ -136,12 +138,12 @@ let thumb = fun i =>
     key_interrupts = std.array.replicate key_count ki.hr,
   } in
   [
-    kc.ESC & MO 1 & hold.reg.behavior htb_generic,
-    kc.SPC & MO 2 & hold.reg.behavior htb_generic,
-    kc.TAB & MO 3 & hold.reg.behavior htb_generic,
-    kc.ENT & MO 4 & hold.reg.behavior htb_generic,
+    kc.ESC  & MO 1 & hold.reg.behavior htb_generic,
+    kc.SPC  & MO 2 & hold.reg.behavior htb_generic,
+    kc.TAB  & MO 3 & hold.reg.behavior htb_generic,
+    kc.ENT  & MO 4 & hold.reg.behavior htb_generic,
     kc.BSPC & MO 5 & hold.reg.behavior htb_generic,
-    kc.DEL & MO 6 & hold.reg.behavior htb_generic,
+    kc.DEL  & MO 6 & hold.reg.behavior htb_generic,
   ]
   |> std.array.at i
 in
@@ -200,7 +202,7 @@ let keymap = {
       kc.F11,  kc.F4,   kc.F5,   kc.F6,   kc.SCRL,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
       kc.F10,  kc.F1,   kc.F2,   kc.F3,   kc.PAUS,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
                         md.rgui, XXXX,    XXXX,       XXXX,    XXXX,    XXXX,
-    ],    
+    ],  
   ]
 } in
 
