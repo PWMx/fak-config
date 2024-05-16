@@ -120,7 +120,7 @@ in
 
 let cu = {
   REDO = md.lctl & kc.Y,
-  PSTE = md.lctl w kc.V,
+  PSTE = md.lctl & kc.V,
   COPY = md.lctl & kc.C,
   CUT  = md.lctl & kc.X,
   UNDO = md.lctl & kc.Z,
@@ -181,7 +181,7 @@ let keymap = {
     # Symbol layer
     L' [
       ks.LCBR, ks.AMPR, ks.ASTR, ks.LPRN, ks.RCBR,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
-      ks.COLN, kc.DLR,  ks.PERC, ks.CIRC, ks.PLUS,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+      ks.COLN, ks.DLR,  ks.PERC, ks.CIRC, ks.PLUS,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
       ks.TILD, ks.EXLM, ks.AT,   ks.HASH, ks.PIPE,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
                         ks.LPRN, ks.RPRN, ks.UNDS,    XXXX,    XXXX,    XXXX,
     ],
@@ -192,6 +192,7 @@ let keymap = {
       kc.SCLN, kc.N4,   kc.N5,   kc.N6,    kc.EQL,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
       kc.GRV,  kc.N1,   kc.N2,   kc.N3,    kc.BSLS,   XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
                         kc.".",  kc.N0,    kc.MINS,   XXXX,    XXXX,    XXXX,
+    ], 
 
     # Function layer
     L' [
