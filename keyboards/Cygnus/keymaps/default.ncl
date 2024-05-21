@@ -126,8 +126,6 @@ let cu = {
   COPY = tm.lctl & kc.C,
   CUT  = tm.lctl & kc.X,
   UNDO = tm.lctl & kc.Z,
-  WH_L = macro.make [macro.press md.lsft, macro.tap ms.WH_U, macro.release md.lsft],
-  WH_R = macro.make [macro.press md.lsft, macro.tap ms.WH_D, macro.release md.lsft],
   BOOT = tap.custom.fak.BOOT,
 } in
 
@@ -138,12 +136,12 @@ let thumb = fun i =>
     key_interrupts = std.array.replicate key_count ki.hr,
   } in
   [
-    kc.ESC  & MO 1 & hold.reg.behavior htb_generic,
-    kc.SPC  & MO 2 & hold.reg.behavior htb_generic,
-    kc.TAB  & MO 3 & hold.reg.behavior htb_generic,
-    kc.ENT  & MO 4 & hold.reg.behavior htb_generic,
-    kc.BSPC & MO 5 & hold.reg.behavior htb_generic,
-    kc.DEL  & MO 6 & hold.reg.behavior htb_generic,
+    kc.ESC  & MO 1 & hold.reg.behavior htb_generic, # Media layer
+    kc.SPC  & MO 2 & hold.reg.behavior htb_generic, # Navigation layer
+    kc.TAB  & MO 3 & hold.reg.behavior htb_generic, # Mouse layer
+    kc.ENT  & MO 4 & hold.reg.behavior htb_generic, # Symbol layer
+    kc.BSPC & MO 5 & hold.reg.behavior htb_generic, # Numeric layer
+    kc.DEL  & MO 6 & hold.reg.behavior htb_generic, # Function layer
   ]
   |> std.array.at i
 in
@@ -176,7 +174,7 @@ let keymap = {
     L' [
       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,       cu.REDO, cu.PSTE, cu.COPY, cu.CUT,  cu.UNDO,
       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,       XXXX,    ms.LEFT, ms.UP,   ms.DOWN, ms.RGHT,
-      cu.BOOT, XXXX,    XXXX,    XXXX,    XXXX,       XXXX,    cu.WH_L, ms.WH_U, ms.WH_D, cu.WH_R,
+      cu.BOOT, XXXX,    XXXX,    XXXX,    XXXX,       XXXX,    XXXX,    ms.WH_U, ms.WH_D, XXXX,
                         XXXX,    XXXX,    XXXX,       ms.BTN1, ms.BTN2, ms.BTN3,
     ],
 
